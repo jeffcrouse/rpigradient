@@ -1,9 +1,9 @@
-#ifdef GL_ES
-precision mediump float;
-precision mediump int;
-#endif
+// #ifdef GL_ES
+// precision mediump float;
+// precision mediump int;
+// #endif
 
-#define PROCESSING_COLOR_SHADER
+// #define PROCESSING_COLOR_SHADER
 
 
 uniform sampler2D srcSampler;
