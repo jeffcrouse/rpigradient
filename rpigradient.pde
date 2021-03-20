@@ -3,7 +3,7 @@ PShader s;
 PFont font;
 PGraphics pg;
 int w, h;
-float frac=20;
+float frac = .1;
 
 
 void setup() {
@@ -14,8 +14,8 @@ void setup() {
   smooth();
   font = createFont("Arial Bold", 48);
 
-  w = (int)(displayWidth/frac);
-  h = (int)(displayHeight/frac);
+  w = (int)(displayWidth * frac);
+  h = (int)(displayHeight * frac);
 
   pg = createGraphics(w/2, h/2, P3D);
   grad = loadImage("gradient-01.png");
@@ -23,8 +23,7 @@ void setup() {
   s.set("srcSampler", grad);
 }
 
-void draw() {
-
+void drawGradient() {
   pg.beginDraw();
   s.set("resolution", w, h);
   s.set("millis", millis());
@@ -37,9 +36,12 @@ void draw() {
   pg.vertex(0, h, 0, 1);
   pg.endShape();
   pg.endDraw();
-
   image(pg, 0, 0, width, height);
+}
 
+void draw() {
+
+  drawGradient();
 
   textFont(font, 36);
   fill(255);
