@@ -92,7 +92,7 @@ float map(float value, float min1, float max1, float min2, float max2) {
 
 void main() {  
     float t1 = millis / 4000.0;
-    float t2 = millis / 9000.0;
+    float t2 = millis / 4000.0;
 
     float res = map(sin(t2), -1, 1, 0.5, 2.5);
     vec2 st = (gl_FragCoord.xy / resolution) * res;  
