@@ -7,11 +7,10 @@ float frac=20;
 
 
 void setup() {
-  //size(640, 480, P3D);
   fullScreen(P3D);
   noCursor();
-  //noStroke();
-  frameRate(120);
+  noStroke();
+  frameRate(999);
   smooth();
   font = createFont("Arial Bold", 48);
 
