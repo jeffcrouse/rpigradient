@@ -2,20 +2,21 @@ PImage grad;
 PShader s;
 PFont font;
 PGraphics pg;
-int w = 1024;
-int h = 768;
+int w, h;
 
 void setup() {
   //size(640, 480, P3D);
   fullScreen(P3D);
   noCursor();
-  noStroke();
-  frameRate(30);
+  //noStroke();
+  frameRate(120);
   smooth();
   font = createFont("Arial Bold", 48);
 
+  w = displayWidth/2;
+  h = displayHeight/2;
 
-  pg = createGraphics(w, h, P3D);
+  pg = createGraphics(w/2, h/2, P3D);
   grad = loadImage("gradient-01.png");
   s = loadShader("shader.glsl");
   s.set("srcSampler", grad);
@@ -37,8 +38,8 @@ void draw() {
   pg.endDraw();
 
   image(pg, 0, 0, width, height);
-  
-  
+
+
   textFont(font, 36);
   fill(255);
   text(frameRate, 20, 45);
