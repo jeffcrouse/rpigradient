@@ -94,13 +94,13 @@ void main() {
     float t1 = float(millis) / 4000.0;
     float t2 = float(millis) / 6000.0;
 
-    float res = map(sin(t2), -1, 1, 0.5, 2.5);
+    float res = map(sin(t2), -1.0, 1.0, 0.5, 2.5);
     vec2 st;
     st.x = (gl_FragCoord.x / resolution.x) * res;  
     st.y = (gl_FragCoord.y / resolution.y) * res;
 
     float n = snoise(vec3(st, t1));
-    float s = map(n, -1, 1, 0, 1);
+    float s = map(n, -1.0, 1.0, 0.0, 1.0);
     vec3 c1 = texture2D(srcSampler, vec2(s, 0)).rgb;
     gl_FragColor = vec4(c1, 1.0);  
 }
