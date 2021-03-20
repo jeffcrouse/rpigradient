@@ -3,6 +3,8 @@ PShader s;
 PFont font;
 PGraphics pg;
 int w, h;
+float frac=20;
+
 
 void setup() {
   //size(640, 480, P3D);
@@ -13,8 +15,8 @@ void setup() {
   smooth();
   font = createFont("Arial Bold", 48);
 
-  w = displayWidth/2;
-  h = displayHeight/2;
+  w = (int)(displayWidth/frac);
+  h = (int)(displayHeight/frac);
 
   pg = createGraphics(w/2, h/2, P3D);
   grad = loadImage("gradient-01.png");
