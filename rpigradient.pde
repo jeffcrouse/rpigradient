@@ -1,5 +1,6 @@
 PImage grad;
 PShader s;
+PFont font;
 PGraphics pg;
 int w = 1024;
 int h = 768;
@@ -9,6 +10,11 @@ void setup() {
   fullScreen(P3D);
   noCursor();
   noStroke();
+  frameRate(30);
+  smooth();
+  font = createFont("Arial Bold", 48);
+
+
   pg = createGraphics(w, h, P3D);
   grad = loadImage("gradient-01.png");
   s = loadShader("shader.glsl");
@@ -16,11 +22,11 @@ void setup() {
 }
 
 void draw() {
-  
+
   pg.beginDraw();
   s.set("resolution", w, h);
   s.set("millis", millis());
-  
+
   pg.shader(s);
   pg.beginShape(QUAD);
   pg.vertex(0, 0, 0, 0);
@@ -29,9 +35,13 @@ void draw() {
   pg.vertex(0, h, 0, 1);
   pg.endShape();
   pg.endDraw();
+
+  image(pg, 0, 0, width, height);
   
   
-  image(pg, 0, 0, width, height); 
+  textFont(font, 36);
+  fill(255);
+  text(frameRate, 20, 45);
 }
 
 void keyPressed() {
