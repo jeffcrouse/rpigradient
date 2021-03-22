@@ -7,6 +7,7 @@
 
 
 uniform sampler2D srcSampler;
+uniform sampler2D movie;
 uniform int millis;
 //varying vec4 vertTexCoord;
 uniform vec2 resolution;
@@ -101,5 +102,9 @@ void main() {
     float n = snoise(vec3(x, y, t1));
     float s = map(n, -1.0, 1.0, 0.0, 1.0);
 
-    gl_FragColor = texture2D(srcSampler, vec2(s, 0));
+
+    vec4 s1 = texture2D(movie, gl_FragCoord.xy / resolution);
+    vec4 s2 = texture2D(srcSampler, vec2(s, 0));
+    gl_FragColor = mix(s1, s2, 0.8);
 }
+   
