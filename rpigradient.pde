@@ -13,7 +13,7 @@ PGraphics pg;
 int w, h;
 float frac = .25;
 Polyline timeline = new Polyline();
-Boolean debug = true;
+Boolean debug = false;
 
 void setup() {
   //size(1920, 1080, P3D);
@@ -99,4 +99,7 @@ void draw() {
 //}
 
 void keyPressed() {
+  if(key=='d') {
+    debug = !debug;
+  }
 }
