@@ -11,9 +11,9 @@ PShader s;
 PFont font;
 PGraphics pg;
 int w, h;
-float frac = .4;
+float frac = .25;
 Polyline timeline = new Polyline();
-Boolean debug = false;
+Boolean debug = true;
 
 void setup() {
   //size(1920, 1080, P3D);
@@ -22,7 +22,7 @@ void setup() {
 
   //frameRate(60);
   smooth();
-  font = createFont("Arial Bold", 48);
+  font = loadFont("ArialRoundedMTBold-24.vlw");
 
   w = (int)(displayWidth * frac);
   h = (int)(displayHeight * frac);
