@@ -9,6 +9,7 @@
 uniform sampler2D srcSampler;
 uniform sampler2D movie;
 uniform int millis;
+uniform float brightness;
 //varying vec4 vertTexCoord;
 uniform vec2 resolution;
 
@@ -92,19 +93,19 @@ float map(float value, float min1, float max1, float min2, float max2) {
 }
 
 void main() {  
-    float t1 = float(millis) / 4000.0;
-    float t2 = float(millis) / 6000.0;
+    float t1 = float(millis) / 4000.0;  // "fast" time
+    float t2 = float(millis) / 2000.0;  // "slow" time
 
     float period = map(sin(t2), -1.0, 1.0, 0.5, 2.5);
-    float x = (gl_FragCoord.x / resolution.x) * period;  
-    float y = (gl_FragCoord.y / resolution.y) * period;
+    vec2 uv =  (gl_FragCoord.xy / resolution) * period;  
 
-    float n = snoise(vec3(x, y, t1));
-    float s = map(n, -1.0, 1.0, 0.0, 1.0);
+    float n = snoise(vec3(uv.x, uv.y, t1));
+    float x = map(n, -1.0, 1.0, 0.0, 1.0);
 
 
-    vec4 s1 = texture2D(movie, gl_FragCoord.xy / resolution);
-    vec4 s2 = texture2D(srcSampler, vec2(s, 0));
-    gl_FragColor = mix(s1, s2, 0.8);
+    //vec4 s1 = texture2D(movie, gl_FragCoord.xy / resolution);
+    vec4 s2 = texture2D(srcSampler, vec2(x, 0));
+
+    gl_FragColor = s2 * brightness; //mix(s1, s2, 0.8);
 }
    
